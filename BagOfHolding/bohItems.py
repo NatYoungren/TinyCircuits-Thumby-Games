@@ -141,3 +141,97 @@ class BombItemObj(ItemObj):
         fx, fy = player.aim_vector()
         player.impulse(fx*self.launch_speed, fy*self.launch_speed)
 
+
+class SwordItemObj(ItemObj):
+        
+    def __init__(self,
+                 throw_speed=10.0,
+                 lifespan=5000,
+                 x=0,
+                 y=0,
+                 momentum=0.8,
+                 gravity=0.5):
+        
+        super().__init__(sprite=bohSprites.itemswordSprite(),
+                            throw_speed=throw_speed,
+                            lifespan=lifespan,
+                            x=x,
+                            y=y,
+                            momentum=momentum,
+                            gravity=gravity)
+
+class AxeItemObj(ItemObj):
+        
+    def __init__(self,
+                 throw_speed=10.0,
+                 lifespan=5000,
+                 x=0,
+                 y=0,
+                 momentum=0.8,
+                 gravity=0.5):
+        
+        super().__init__(sprite=bohSprites.itemaxeSprite(),
+                            throw_speed=throw_speed,
+                            lifespan=lifespan,
+                            x=x,
+                            y=y,
+                            momentum=momentum,
+                            gravity=gravity)
+
+class PotionItemObj(ItemObj):
+        
+    def __init__(self,
+                 throw_speed=10.0,
+                 lifespan=5000,
+                 x=0,
+                 y=0,
+                 momentum=0.8,
+                 gravity=0.5):
+        
+        super().__init__(sprite=bohSprites.itempotionSprite(),
+                            throw_speed=throw_speed,
+                            lifespan=lifespan,
+                            x=x,
+                            y=y,
+                            momentum=momentum,
+                            gravity=gravity)
+
+class RockItemObj(ItemObj):
+        
+    def __init__(self,
+                 throw_speed=10.0,
+                 lifespan=5000,
+                 x=0,
+                 y=0,
+                 momentum=0.8,
+                 gravity=0.5):
+        
+        super().__init__(sprite=bohSprites.itemrockSprite(),
+                            throw_speed=throw_speed,
+                            lifespan=lifespan,
+                            x=x,
+                            y=y,
+                            momentum=momentum,
+                            gravity=gravity)
+
+class BootItemObj(ItemObj):
+        
+    def __init__(self,
+                 throw_speed=10.0,
+                 lifespan=5000,
+                 x=0,
+                 y=0,
+                 momentum=0.8,
+                 gravity=0.5):
+        
+        super().__init__(sprite=bohSprites.itembootSprite(),
+                            throw_speed=throw_speed,
+                            lifespan=lifespan,
+                            x=x,
+                            y=y,
+                            momentum=momentum,
+                            gravity=gravity)
+
+all_items = [BombItemObj,
+# SwordItemObj, AxeItemObj, PotionItemObj, RockItemObj, BootItemObj
+            ]
