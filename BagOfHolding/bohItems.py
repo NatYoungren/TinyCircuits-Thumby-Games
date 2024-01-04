@@ -43,13 +43,15 @@ class ItemObj(SpriteObj):
     
     def on_collision(self, other):
         pass
-    
-    def on_throw(self):
+        
+        
+    def on_throw(self, player): # Exclusively called by PlayerObj.
         self.birth = time.ticks_ms()
         self.held = False
-    
-    def on_use(self):
-        pass
+        
+    def on_use(self, player): # Exclusively called by PlayerObj.
+        self.birth = time.ticks_ms()
+        self.held = False
     
     # def on_pickup(self):
     #     pass
@@ -59,7 +61,7 @@ class ItemObj(SpriteObj):
     #       This would allow for a 'destroyed' animation.
     
     def on_timeout(self):
-        pass
+        self.cleanup = True
 
 
 class BombItemObj(ItemObj):
