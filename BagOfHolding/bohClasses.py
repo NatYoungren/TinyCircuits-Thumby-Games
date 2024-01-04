@@ -196,7 +196,7 @@ class PlayerObj(SpriteObj):
         # DEBUG
         self.reset_timer = 0
         
-    def handle_input(self, entities: list, t: int):
+    def handle_input(self, t: int):
         
         # DEBUG: Reload game if A is held.
         if thumby.buttonA.pressed():
@@ -208,11 +208,14 @@ class PlayerObj(SpriteObj):
         
         # Get random item if A is pressed
         if thumby.buttonA.justPressed():
-            self.roll_item()
+            if self.item is None:
+                self.roll_item()
+            else:
+                self.use()
             
         # Throw items if B is pressed
         if thumby.buttonB.justPressed() and self.item is not None:
-            entities.append(self.throw())
+            self.throw()
             
         # Walking L/R
         horizontal = int(thumby.buttonR.pressed()) - int(thumby.buttonL.pressed())
