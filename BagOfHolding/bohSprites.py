@@ -48,8 +48,8 @@ batSprite = thumby.Sprite(8, 8,
 
 
 # EXPLOSION: width: 7, height: 7
-def explosionSprite(): 
-    return thumby.Sprite(7, 7, bytearray([53,110,59,86,109,59,109])+bytearray([74,17,68,41,18,68,18]))
+def explosionSprite():
+    return thumby.Sprite(7, 7, bytearray([0,0,8,0,20,0,0]) + bytearray([0,4,8,34,20,0,0]) + bytearray([0,20,8,66,36,10,0]) + bytearray([0,18,44,82,36,18,4]))
 
 
 # # #

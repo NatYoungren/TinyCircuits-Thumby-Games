@@ -103,7 +103,7 @@ class BombItemObj(ItemObj):
         super().updatePosition(t)
             
         if self.exploded: # Randomly set state of explosion sprite
-            self.sprite.setFrame(t%2)
+            self.sprite.setFrame(t%4)
             r = random.randint(0, 3)
             self.sprite.mirrorX = r // 2
             self.sprite.mirrorY = r % 2
