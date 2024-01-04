@@ -24,7 +24,6 @@ def main():
     #   Would also allow for entities to be added to the list in their constructor.
     #   Would also allow for entities to be removed from the list in their destructor.
     #   Seems necessary for entities to check collisions.
-    entities = []
     
     # # #
     # MAIN LOOP
