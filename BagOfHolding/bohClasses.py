@@ -114,7 +114,8 @@ class SpriteObj(PhysObj):
                  x=0.0,
                  y=0.0,
                  momentum=0.8,
-                 gravity=0.5):
+                 gravity=0.5,
+                 isEntity=True):
         
         super().__init__(x=x, y=y, momentum=momentum, gravity=gravity)
         self.sprite = sprite
@@ -123,6 +124,14 @@ class SpriteObj(PhysObj):
         self.collision = True   # Can collide with objects
         self.cleanup = False    # Flag for removal from entity list
         
+        # TODO: Consider a defined max number of entities.
+        # TODO: Consider an entity dict
+        
+        # self.isEntity = isEntity
+        if isEntity:
+            SpriteObj.entities.append(self)
+            
+            
     # TODO: Use timedelta
     def updatePosition(self, t):
         super().updatePosition(t)
