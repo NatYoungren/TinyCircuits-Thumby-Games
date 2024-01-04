@@ -172,7 +172,8 @@ class PlayerObj(SpriteObj):
                          x=x,
                          y=y,
                          momentum=momentum,
-                         gravity=gravity)
+                         gravity=gravity,
+                         isEntity=False)
         
         # Held item
         self.ifSprite = ifSprite
