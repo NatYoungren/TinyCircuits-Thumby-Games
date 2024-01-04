@@ -84,11 +84,21 @@ class BombItemObj(ItemObj):
         self.launch_speed = 8.0
         self.exploded = False
     
+    def explode(self):
+        print('Bomb exploded!')
+        self.collision = False # TODO: Should probably still have some sort of 'collision' flag.
+                                    #  i.e. collision = true, but solid = false
+        
+        self.sprite = bohSprites.explosionSprite()
+        self.exploded = True
+        self.lifespan += 500
+
+        self.exploded = True
+        self.gravity = 0.0
+        self.momentum = 0.4
+    
     def updatePosition(self, t):
         super().updatePosition(t)
-        
-        if t - self.birth > self.lifespan:
-            self.on_timeout()
             
         if self.exploded: # Randomly set state of explosion sprite
             self.sprite.setFrame(t%2)
@@ -107,14 +117,7 @@ class BombItemObj(ItemObj):
     
     def on_timeout(self):
         if not self.exploded:
-            print('Bomb exploded!')
-            self.sprite = bohSprites.explosionSprite()
-            self.lifespan += 2000
-            self.collision = False
-            self.exploded = True
+            self.explode()
         else:
-            print('Bomb removed!')
-            self.cleanup = True
+            super().on_timeout()
 
-        
-all_items = [BombItemObj]
