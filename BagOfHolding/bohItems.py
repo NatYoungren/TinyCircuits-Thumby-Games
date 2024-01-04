@@ -123,3 +123,21 @@ class BombItemObj(ItemObj):
         else:
             super().on_timeout()
 
+    def on_use(self, player):
+        super().on_use(player)
+        # TODO: NEEDS TO BE ADDED TO ENTITIES
+        # TODO: NEEDS TO HURT PLAYER
+        # TODO: NEEDS TO INHERIT SOME VELOCITY?
+        self.birth -= self.lifespan
+        self.explode()
+        # self.held = False
+        # TODO: Add an offset
+        
+        self.x = player.x
+        self.y = player.y
+        self.vx = player.vx
+        self.vy = player.vy
+        
+        fx, fy = player.aim_vector()
+        player.impulse(fx*self.launch_speed, fy*self.launch_speed)
+
