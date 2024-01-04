@@ -93,6 +93,22 @@ class CameraObj(PhysObj):
 # Obj which attaches a sprite to a PhysObj
 class SpriteObj(PhysObj):
     
+    entities = []
+    
+    @staticmethod
+    def updateEntities(t):
+        for entity in SpriteObj.entities:
+            entity.updatePosition(t)
+            
+    @staticmethod
+    def drawEntities(camera: CameraObj):
+        for entity in SpriteObj.entities:
+            entity.draw(camera)
+    
+    @staticmethod
+    def cleanupEntities():
+        SpriteObj.entities = [e for e in SpriteObj.entities if not e.cleanup]
+
     def __init__(self, 
                  sprite: thumby.Sprite,
                  x=0.0,
