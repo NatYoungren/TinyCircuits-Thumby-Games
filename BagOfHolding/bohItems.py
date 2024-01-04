@@ -25,15 +25,15 @@ class ItemObj(SpriteObj):
 
         self.throw_speed = throw_speed
         self.lifespan = lifespan
-        self.birth = None # time.ticks_ms() # TODO: Set birth at throw time?
-        self.held = held
+        self.held = held # FIXME: This could be the same as birth=None.
+        self.birth = None # time.ticks_ms() # NOTE: Currently set in on_throw.
     
     def updatePosition(self, t):
         super().updatePosition(t)
         
-        if t - self.birth > self.lifespan:
+        if not self.held and t - self.birth > self.lifespan:
             self.on_timeout()
-    
+        
     def updateSprite(self, camera):
         if self.held:
             self.sprite.y = thumby.display.height - self.sprite.height
