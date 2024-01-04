@@ -66,8 +66,8 @@ class BombItemObj(ItemObj):
         
     def __init__(self,
                 #  sprite: thumby.Sprite,
-                 throw_speed=10.0,
-                 lifespan=5000,
+                 throw_speed=6.0,
+                 lifespan=3000,
                  x=0,
                  y=0,
                  momentum=0.8,
@@ -81,6 +81,7 @@ class BombItemObj(ItemObj):
                             momentum=momentum,
                             gravity=gravity)
         
+        self.launch_speed = 8.0
         self.exploded = False
     
     def updatePosition(self, t):
