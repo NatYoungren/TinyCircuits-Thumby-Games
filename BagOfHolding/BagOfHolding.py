@@ -18,13 +18,20 @@
 #       camera lock on player
 #       reset w/ button hold
 #       item subclasses?
-# TODO: item usage (bomb jump)
-#           better/bigger explosion
+#       item usage (bomb jump)
+#           better explosion animation
+# TODO: 2 more items
+#           potion
+#               break on collision, heal on use
+#           sword/axe
+#               damage on collision, dash attack on use
+#               'in-use' sprite locked to player
 #       item scroll-select (rummaging)
 #           Slows down movement
 #           Select item w/ tap OR *hold to rummage*
 #       enemy subclass
 #           enemy behavior
+#       bigger explosion on bomb!
 #       collision
 #           terrain
 #       greyscale integration?
