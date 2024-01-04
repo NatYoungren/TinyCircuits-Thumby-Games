@@ -253,10 +253,10 @@ class PlayerObj(SpriteObj):
         super().draw(camera)
         
         # Update  # TODO: Can technically use 3 sprites and flip them.
-        rad = math.radians(self.arrowAng)
+        fx, fy = self.aim_vector()
         self.arrow = self.arrowSprites[self.arrowAng]
-        self.arrow.x = self.sprite.x + math.cos(rad) * self.arrowOffset
-        self.arrow.y = self.sprite.y - math.sin(rad) * self.arrowOffset
+        self.arrow.x = self.sprite.x + fx * self.arrowOffset
+        self.arrow.y = self.sprite.y + fy * self.arrowOffset
         
         # thumby.display.drawSpriteWithMask(self.sprite, self.sprite)
         thumby.display.drawSpriteWithMask(self.arrow, self.arrow)
@@ -267,27 +267,31 @@ class PlayerObj(SpriteObj):
             self.item.draw(camera)
             # thumby.display.drawSprite(self.item)    # Current item
         
-    def throw(self, force=10, dx=0, dy=0): # TODO: Manually override with dx and dy? Alternate func?
+    def throw(self, force=10, dx=0, dy=0, inherit_speed=True): # TODO: Manually override with dx and dy? Alternate func?
         
         t_item = self.item
         self.item = None
         
+        # TODO: Replace with item on_throw() implementation?
         t_item.x = self.x
         t_item.y = self.y
         
-        rad = math.radians(self.arrowAng)
-        t_item.impulse(math.cos(rad)*force, -math.sin(rad)*force)
+        fx, fy = self.aim_vector()
+        fx = fx * force + dx + (inherit_speed * self.vx)
+        fy = fy * force + dy + (inherit_speed * self.vy)
+        t_item.impulse(fx, fy) 
         
-        t_item.on_throw()
-
-        return t_item
-        
+        t_item.on_throw(self)
+    
     def use(self):
         if self.item is not None:
-            self.item.use()
+            # Single use per item, consumed on use.
+            self.item.on_use(self)
             self.item = None
 
-
+    def aim_vector(self):
+        rad = math.radians(self.arrowAng)
+        return math.cos(rad), -math.sin(rad)
 
 # bobRate = 250 # Set arbitrary bob rate (higher is slower)
 # bobRange = 5  # How many pixels to move the sprite up/down (-5px ~ 5px)
