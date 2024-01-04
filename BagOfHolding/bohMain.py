@@ -1,7 +1,7 @@
 import time
 import thumby
 
-from bohClasses import PlayerObj, CameraObj
+from bohClasses import PlayerObj, CameraObj, SpriteObj
 
 # TODO: Rename itemsprites
 from bohSprites import playerSprite, ifSprite, itemSprites, arrowSprites
@@ -32,24 +32,22 @@ def main():
         t0 = time.ticks_ms()   # Get time (ms)
 
         # Input acts upon the player
-        player.handle_input(entities, t=t0)
+        player.handle_input(t=t0)
         
         # Update all entity positions
-        for entity in entities:
-            entity.updatePosition(t0)
+        SpriteObj.updateEntities(t0)
         player.updatePosition(t0)
         camera.updatePosition(t0)
         
         # Remove dead entities
-        entities = [e for e in entities if not e.cleanup]
+        SpriteObj.cleanupEntities()
         
         # TODO: Check for collisions?
         #       Could also do this in the updatePosition() method of each entity?
         
         # Draw current frame.
         thumby.display.fill(0)
-        for entity in entities:
-            entity.draw(camera=camera)
+        SpriteObj.drawEntities(camera=camera)
         player.draw(camera=camera)
         
         thumby.display.update()
